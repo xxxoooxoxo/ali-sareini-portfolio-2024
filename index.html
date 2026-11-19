@@ -43,6 +43,7 @@
   #fade { position: absolute; inset: 0; z-index: 2; background: #000; opacity: 0; pointer-events: none; transition: opacity 0.5s; }
   #fade.on { opacity: 1; }
 </style>
+<meta name="game-revision" content="06b258340400376567c263ab838d84d7188dd42c">
 </head>
 <body>
 <section id="loading-screen" data-chapter="uva" aria-labelledby="loading-title">
@@ -57,13 +58,16 @@
 <div id="stage" tabindex="0" inert>
   <div id="title" class="hud off"><small id="title-top"></small><span id="title-main"></span><small id="title-sub"></small></div>
   <div id="caption" class="hud off"></div>
-  <div id="hint" class="hud">WASD move · SHIFT sprint · SPACE jump · ALT walk<br>Click game to focus · drag to look · wheel zoom<br>E interact · C look back · ESC release mouse<br>F full screen · 1–4 chapters</div>
+  <div id="hint" class="hud">WASD move · SHIFT sprint · SPACE jump · ALT walk<br>Click game to focus · drag to look · wheel zoom<br>E interact · Q gear · J use gear or punch · I inventory<br>C look back · ESC release mouse<br>F full screen · 1–4 chapters</div>
   <button id="full" type="button" aria-label="Full screen" title="Full screen (F)"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 6V2h4M10 2h4v4M14 10v4h-4M6 14H2v-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
   <div id="fade"></div>
 </div>
-<script type="importmap">{"imports": {"three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js", "life/": "./game/"}}</script>
+<script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js" } }</script>
 <script type="module" onerror="document.getElementById('loading-screen').dataset.state='error'">
-import('./game/main.js').catch(error => { document.getElementById('loading-screen').dataset.state = 'error'; console.error(error); });
+import('./game/releases/06b258340400376567c263ab838d84d7188dd42c/main.js').catch(error => {
+  document.getElementById('loading-screen').dataset.state = 'error';
+  console.error(error);
+});
 </script>
 </body>
 </html>
