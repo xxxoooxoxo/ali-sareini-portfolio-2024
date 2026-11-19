@@ -43,7 +43,7 @@
   #fade { position: absolute; inset: 0; z-index: 2; background: #000; opacity: 0; pointer-events: none; transition: opacity 0.5s; }
   #fade.on { opacity: 1; }
 </style>
-<meta name="game-revision" content="06b258340400376567c263ab838d84d7188dd42c">
+<meta name="game-revision" content="2cd5431f1d4e1e6d4b24e0d81f5b53fecd61f404">
 </head>
 <body>
 <section id="loading-screen" data-chapter="uva" aria-labelledby="loading-title">
@@ -64,7 +64,7 @@
 </div>
 <script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js" } }</script>
 <script type="module" onerror="document.getElementById('loading-screen').dataset.state='error'">
-import('./game/releases/06b258340400376567c263ab838d84d7188dd42c/main.js').catch(error => {
+import('./game/releases/2cd5431f1d4e1e6d4b24e0d81f5b53fecd61f404/main.js').catch(error => {
   document.getElementById('loading-screen').dataset.state = 'error';
   console.error(error);
 });
