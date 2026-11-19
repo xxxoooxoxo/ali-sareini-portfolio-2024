@@ -1,0 +1,41 @@
+/* Render the game and its first paint against the same viewport. */
+html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+#stage { position: fixed; inset: 0; width: 100%; height: 100%; }
+@supports (height: 100dvh) { #stage { height: 100dvh; } }
+#stage[data-lab] { position: relative; width: min(100vw, 56.25vh); height: auto; aspect-ratio: 9/16; }
+
+#loading-screen {
+  --ink: #ffcb7c;
+  position: fixed; inset: 0; z-index: 20; isolation: isolate; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: flex-end; box-sizing: border-box;
+  padding: max(22px, env(safe-area-inset-top)) max(5vw, env(safe-area-inset-right))
+           max(6vh, env(safe-area-inset-bottom)) max(5vw, env(safe-area-inset-left));
+  background: #30291f; color: #fff3d8;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#loading-screen[hidden] { display: none; }
+#loading-art, #loading-screen::after { position: absolute; inset: 0; width: 100%; height: 100%; }
+#loading-art { object-fit: cover; object-position: 56% 42%; z-index: -2; }
+#loading-screen::after {
+  content: ""; z-index: -1;
+  background: linear-gradient(0deg, #11100ef2 0%, #17120ea8 14%, transparent 53%);
+}
+.loading-footer { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; }
+.loading-place { margin: 0 0 9px; color: var(--ink); font: bold clamp(11px, 1.2vw, 16px)/1.2 ui-monospace, monospace; letter-spacing: .13em; text-transform: uppercase; }
+#loading-title { margin: 0; font: bold italic clamp(44px, 7.4vw, 112px)/.94 Georgia, serif; letter-spacing: -.055em; text-shadow: 2px 3px 0 #19120e; }
+.loading-status { flex: none; padding-bottom: 4px; font: bold 12px/1.3 ui-monospace, monospace; text-transform: uppercase; letter-spacing: .09em; }
+.loading-track { display: block; position: relative; overflow: hidden; margin-top: 8px; width: 142px; height: 4px; background: #fff0cb44; }
+.loading-track::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 36%; background: var(--ink); animation: loading-sweep 1.4s ease-in-out infinite alternate; }
+@keyframes loading-sweep { to { transform: translateX(178%); } }
+.loading-error { display: none; }
+#loading-screen[data-state="error"] .loading-status { display: none; }
+#loading-screen[data-state="error"] .loading-error { display: block; }
+.loading-error, #loading-screen noscript { font: 16px/1.6 system-ui, sans-serif; }
+.loading-error a, #loading-screen noscript a { color: var(--ink); margin-right: 12px; }
+@media (orientation: portrait) {
+  #loading-screen { padding: 24px 6vw max(6vh, env(safe-area-inset-bottom)); }
+  #loading-art { object-position: 76% 38%; }
+  #loading-screen[data-chapter="sf"] #loading-art { object-position: 40% 45%; }
+  .loading-footer { align-items: start; flex-direction: column; gap: 26px; }
+}
+@media (prefers-reduced-motion: reduce) { .loading-track::before { animation: none; } }
